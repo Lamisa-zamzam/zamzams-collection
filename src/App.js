@@ -6,32 +6,54 @@ import Orders from "./Components/Orders/Orders";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavbar from "./Components/MyNavbar/MyNavbar";
 import Login from "./Components/Login/Login";
+import { createContext, useState } from "react";
+import Checkout from "./Components/Checkout/Checkout.js";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import NotFound from "./NotFound/NotFound";
+
+export const UserContext = createContext();
 
 function App() {
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        photoURL: "",
+        isNewUser: true,
+        isLoggedIn: false,
+        error: "",
+    });
     return (
-        <Router>
-            <MyNavbar/>
-            <Switch>
-                <Route path="/home">
-                    <Home />
-                </Route>
-                <Route path="/orders">
-                    <Orders />
-                </Route>
-                <Route path="/admin">
-                    <Admin />
-                </Route>
-                <Route path="/deals">
-                    <Home />
-                </Route>
-                <Route path="/login">
-                    <Login />
-                </Route>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-            </Switch>
-        </Router>
+        <UserContext.Provider value={[user, setUser]}>
+            <Router>
+                <MyNavbar />
+                <Switch>
+                    <Route path="/home">
+                        <Home />
+                    </Route>
+                    <PrivateRoute path="/orders">
+                        <Orders />
+                    </PrivateRoute>
+                    <PrivateRoute path="/admin">
+                        <Admin />
+                    </PrivateRoute>
+                    <Route path="/deals">
+                        <Home />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <PrivateRoute path="/checkout/:_id">
+                        <Checkout/>
+                    </PrivateRoute>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route path="*">
+                        <NotFound/>
+                    </Route>
+                </Switch>
+            </Router>
+        </UserContext.Provider>
     );
 }
 

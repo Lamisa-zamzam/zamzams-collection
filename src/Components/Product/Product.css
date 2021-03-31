@@ -1,3 +1,20 @@
-.card{
+.card {
     margin-bottom: 15px;
+    box-shadow: 2px 2px 5px dimgray;
+}
+
+.cardImage {
+    height: 320px;
+}
+
+.productPrice {
+    display: inline;
+    color: deeppink;
+    margin-right: 35%;
+}
+
+@media (max-width: 750px){
+    .productPrice{
+        margin-right: 20%;
+    }
 }

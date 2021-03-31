@@ -1,10 +1,15 @@
-import React from "react";
-import { Button, Container, Form, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Container, Form, Row, Spinner } from "react-bootstrap";
 import Product from "../Product/Product";
-import fakeData from "./fakeData.json";
 import "./Home.css";
 
 const Home = () => {
+    const [products, setProducts] = useState([]);
+
+    fetch("http://localhost:5000/products")
+        .then((res) => res.json())
+        .then((data) => setProducts(data));
+
     return (
         <div>
             <Form.Control
@@ -14,10 +19,18 @@ const Home = () => {
             />
             <Button className="searchButton">Search</Button>
             <Container className="container">
-                <Row> 
-                    {fakeData.map((product) => (
+                <Row>
+                    {!products.length && (
+                        <Spinner
+                            className="spinner"
+                            animation="border"
+                            variant="primary"
+                        />
+                    )}
+                    {products.length > 0 &&
+                        products.map((product) => (
                             <Product product={product} key={product.id} />
-                    ))}
+                        ))}
                 </Row>
             </Container>
         </div>
