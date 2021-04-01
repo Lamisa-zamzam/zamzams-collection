@@ -13,7 +13,7 @@ const Checkout = () => {
     const { _id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${_id}`)
+        fetch(`https://powerful-springs-02476.herokuapp.com/product/${_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setSelectedJersey(data);
@@ -25,7 +25,7 @@ const Checkout = () => {
     const confirmOrder = () => {
         const date = new Date();
         const order = { email, product, detail, owner, price, image, id, date };
-        fetch("http://localhost:5000/addOrder", {
+        fetch("https://powerful-springs-02476.herokuapp.com/addOrder", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(order),

@@ -28,7 +28,7 @@ const AddProduct = () => {
     const onSubmit = (data) => {
         console.log(data);
         const productData = { ...data, image: imageURL };
-        fetch("http://localhost:5000/addProduct", {
+        fetch("https://powerful-springs-02476.herokuapp.com/addProduct", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(productData),

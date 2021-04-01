@@ -3,7 +3,7 @@ import MyResponsiveDrawer from "../Drawer/Drawer.js";
 
 const Admin = () => {
     // const sendDataToDatabase = () => {
-    //         fetch("http://localhost:5000/addProduct", {
+    //         fetch("https://powerful-springs-02476.herokuapp.com/addProduct", {
     //             method: "POST",
     //             headers: { "Content-Type": "application/json" },
     //             body: JSON.stringify(fakeData),

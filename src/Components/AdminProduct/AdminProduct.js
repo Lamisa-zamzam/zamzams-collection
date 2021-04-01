@@ -11,7 +11,7 @@ const AdminProduct = (props) => {
     const history = useHistory();
     const handleEdit = () => alert("Feature will be available soon!");
     const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/deleteProduct/${_id}`, {
+        fetch(`https://powerful-springs-02476.herokuapp.com/deleteProduct/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
