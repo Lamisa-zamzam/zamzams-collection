@@ -1,0 +1,36 @@
+.imageUpload {
+    margin-top: 5%;
+    margin-left: 20%;
+    padding-top: 0.7%;
+    text-align: center;
+    height: 50px;
+    width: 70%;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(31, 58, 147, 1);
+    font-size: 25px;
+}
+
+.input {
+    margin: 5% 5% 1% 0%;
+    width: 100%;
+    height: 45%;
+}
+
+.detailInput {
+    margin: 0% 5% 8% 0%;
+    width: 100%;
+    height: 90%;
+}
+
+.submitBtn {
+    border: 2px solid green;
+    background-color: palegreen;
+    padding: 2%;
+    border-radius: 5px;
+    color: green;
+    box-shadow: 2px 2px 5px gray;
+    margin-top: 20%;
+    margin-left: 95%;
+    font-size: 20px;
+}

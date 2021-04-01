@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 import "./MyNavbar.css";
 
 const MyNavbar = () => {
+    const [user, setUser] = useContext(UserContext);
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand as={Link} to="/home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/home">
+                React-Bootstrap
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
@@ -14,7 +18,7 @@ const MyNavbar = () => {
                         Home
                     </Nav.Link>
                     <Nav.Link as={Link} to="/orders" className="navLink">
-                        Order
+                        Orders
                     </Nav.Link>
                     <Nav.Link as={Link} to="/admin" className="navLink">
                         Admin
@@ -22,14 +26,18 @@ const MyNavbar = () => {
                     <Nav.Link as={Link} to="/deals" className="navLink">
                         Deals
                     </Nav.Link>
-                    <Button
-                        as={Link}
-                        to="/login"
-                        variant="primary"
-                        className="navLink"
-                    >
-                        Login
-                    </Button>
+                    {!user.email ? (
+                        <Button
+                            as={Link}
+                            to="/login"
+                            variant="primary"
+                            className="navLink"
+                        >
+                            Login
+                        </Button>
+                    ) : (
+                        <p className="navLink email">{user.email}</p>
+                    )}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

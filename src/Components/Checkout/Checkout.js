@@ -1,19 +1,51 @@
-import React, { useState } from "react";
-import { Spinner } from "react-bootstrap";
-import { useParams } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
+import { useHistory, useParams } from "react-router";
+import { UserContext } from "../../App";
 import "./Checkout.css";
 
 const Checkout = () => {
+    const history = useHistory();
+    const [user, setUser] = useContext(UserContext);
+    const { email } = user;
+    console.log(email);
     const [selectedJersey, setSelectedJersey] = useState({});
     const { _id } = useParams();
 
-    fetch(`http://localhost:5000/product/${_id}`)
-        .then((res) => res.json())
-        .then((data) => {
-            setSelectedJersey(data);
-        });
+    useEffect(() => {
+        fetch(`http://localhost:5000/product/${_id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setSelectedJersey(data);
+            });
+    }, [_id]);
 
-    console.log(selectedJersey, selectedJersey.length);
+    const { product, detail, owner, price, image, id } = selectedJersey;
+
+    const confirmOrder = () => {
+        const date = new Date();
+        const order = { email, product, detail, owner, price, image, id, date };
+        fetch("http://localhost:5000/addOrder", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(order),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if(data === true){
+                    alert("Your order has been placed successfully!!!");
+                    history.push("/");
+                }
+                else{
+                    const newUser = {...user};
+                    newUser.error = "Something went wrong. Please try again";
+                    setUser(newUser);
+                }
+            });
+    };
+
+    console.log(selectedJersey);
     return (
         <div>
             {selectedJersey === {} ? (
@@ -23,7 +55,41 @@ const Checkout = () => {
                     variant="primary"
                 />
             ) : (
-                <h1>Hello</h1>
+                <div>
+                    <p style={{color: "red"}}>{user.error}</p>
+                    <Container className="container">
+                        <h1 className="tableHeading">Checkout</h1>
+                        <h5 className="tableHeading">Confirm your order</h5>
+                        <Row className="titleRow">
+                            <Col>Name</Col>
+                            <Col className="columnEmpty"></Col>
+                            <Col>Quantity</Col>
+                            <Col>Price</Col>
+                        </Row>
+                        <hr />
+                        <Row>
+                            <Col>{product}</Col>
+                            <Col></Col>
+                            <Col style={{ paddingLeft: "3%" }}>1</Col>
+                            <Col>{price}</Col>
+                        </Row>
+                        <hr />
+                        <Row>
+                            <Col className="tableHeading">Total</Col>
+                            <Col></Col>
+                            <Col></Col>
+                            <Col>
+                                {price}
+                                <br />
+                                <br />
+                                <br />
+                                <Button onClick={confirmOrder}>
+                                    Confirm Order
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
             )}
         </div>
     );

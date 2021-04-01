@@ -1,0 +1,19 @@
+.column {
+    padding-left: 15% !important;
+}
+
+.icon {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    font-size: 25px;
+    margin-left: 12%;
+    color: red;
+}
+
+.editIcon {
+    margin-left: 30%;
+    color: darkorange;
+}
