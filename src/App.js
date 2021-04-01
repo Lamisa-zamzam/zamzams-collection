@@ -9,7 +9,7 @@ import Login from "./Components/Login/Login";
 import { createContext, useState } from "react";
 import Checkout from "./Components/Checkout/Checkout.js";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
-import NotFound from "./NotFound/NotFound";
+import NotFound from "./Components/NotFound/NotFound";
 
 export const UserContext = createContext();
 
