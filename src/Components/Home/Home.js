@@ -34,7 +34,7 @@ const Home = () => {
         handleClick(searchStr);
     };
 
-    // handling search on enter key press
+    // handling search on enter key
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             handleClick(searchStr);

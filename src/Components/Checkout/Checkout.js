@@ -33,7 +33,6 @@ const Checkout = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if (data === true) {
                     alert("Your order has been placed successfully!!!");
                     history.push("/");

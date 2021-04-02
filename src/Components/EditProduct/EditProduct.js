@@ -1,41 +1,37 @@
-import React from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import "../AddProduct/AddProduct.css";
-import { useContext } from "react";
-import { UserContext } from "../../App";
 
-const EditProduct = () => {
-    const [user, setUser] = useContext(UserContext);
+const EditProduct = (props) => {
+    const _id = props.product;
+    console.log(props);
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
-
-    // handle error
-    const handleError = (err) => {
-        const newUser = { ...user };
-        newUser.error = err;
-        setUser(newUser);
-    };
+    const [error, setError] = useState("");
 
     // handles form submit
     const onSubmit = (data) => {
-        console.log(data);
-        fetch(`https://powerful-springs-02476.herokuapp.com/editProduct/${data.product}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        })
+        fetch(
+            `https://powerful-springs-02476.herokuapp.com//editProduct/${_id}`,
+            {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 if (result === true) {
-                    alert("Your product has been added successfully!!!");
+                    alert("Your product has been edited successfully!!!");
                     history.push("/");
                 } else {
-                    handleError("Something went wrong. Please Try again.");
+                    setError("Something went wrong. Please Try again.");
                 }
             });
     };
+
     return (
         <div>
             <Container style={{ marginTop: "2%" }}>
@@ -128,7 +124,7 @@ const EditProduct = () => {
                                 value="Edit Product"
                                 className="submitBtn"
                             />
-                            <p style={{ color: "red" }}>{user.error}</p>
+                            <p style={{ color: "red" }}>{error}</p>
                         </Col>
                     </Row>
                 </form>

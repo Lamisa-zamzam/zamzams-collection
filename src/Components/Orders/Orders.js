@@ -9,6 +9,7 @@ const Orders = () => {
     const [user] = useContext(UserContext);
     const [orders, setOrders] = useState([]);
 
+    // fetching all the orders placed form the logged in user's email
     useEffect(() => {
         fetch(
             `https://powerful-springs-02476.herokuapp.com/orders?email=${user.email}`

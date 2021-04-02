@@ -6,14 +6,12 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useHistory } from "react-router";
 import "./AddProduct.css";
-import { useContext } from "react";
-import { UserContext } from "../../App";
 
 const AddProduct = () => {
-    const [user, setUser] = useContext(UserContext);
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
     const [imageURL, setImageURL] = useState("");
+    const [error, setError] = useState("");
 
     // handles imgbb image upload
     const handleImageUpload = (event) => {
@@ -26,15 +24,8 @@ const AddProduct = () => {
                 setImageURL(res.data.data.display_url);
             })
             .catch((err) => {
-                handleError(err);
+                setError(err);
             });
-    };
-
-    // handle error
-    const handleError = (err) => {
-        const newUser = { ...user };
-        newUser.error = err;
-        setUser(newUser);
     };
 
     // handles form submit
@@ -51,7 +42,7 @@ const AddProduct = () => {
                     alert("Your product has been added successfully!!!");
                     history.push("/");
                 } else {
-                    handleError("Something went wrong. Please Try again.");
+                    setError("Something went wrong. Please Try again.");
                 }
             });
     };
@@ -180,7 +171,7 @@ const AddProduct = () => {
                                         </p>
                                     </div>
                                 )}
-                                <p style={{ color: "red" }}>{user.error}</p>
+                                <p style={{ color: "red" }}>{error}</p>
                             </div>
                         </Col>
                     </Row>

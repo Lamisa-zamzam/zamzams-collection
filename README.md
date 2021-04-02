@@ -15,4 +15,6 @@ My project includes:\
 3.  [React-Bootstrap](https://react-bootstrap.github.io/),\
 4.  [Font Awesome](https://fontawesome.com/),\
 5.  [Firebase](https://firebase.google.com/docs?authuser=0),\
-6.  [React Hook Form](https://react-hook-form.com/), 9. [My own APIs to load data](https://powerful-springs-02476.herokuapp.com) and 10. [Material UI](https://material-ui.com/).
+6.  [React Hook Form](https://react-hook-form.com/),
+7.  [My own APIs to load data](https://powerful-springs-02476.herokuapp.com)and
+8.  [Material UI](https://material-ui.com/).

@@ -6,6 +6,7 @@ import "./MyNavbar.css";
 
 const MyNavbar = () => {
     const [user] = useContext(UserContext);
+
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/home">

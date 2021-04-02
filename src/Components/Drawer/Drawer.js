@@ -94,7 +94,7 @@ function MyResponsiveDrawer(props) {
                         textAlign: "center",
                     }}
                 >
-                    <h5 style={listStyle}>Mundo de las Camisetas</h5>
+                    <h5 style={listStyle}>Zamzam's Collection</h5>
                 </div>
                 <Divider />
                 <List

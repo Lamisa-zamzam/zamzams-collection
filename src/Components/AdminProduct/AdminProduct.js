@@ -12,11 +12,10 @@ const AdminProduct = (props) => {
 
     // handles product edit
     const handleEdit = (_id) => {
-        alert("Feature will be available soon!");
         setEditing(true);
     };
 
-    // handle product delete
+    // handles product delete
     const handleDelete = (_id) => {
         fetch(
             `https://powerful-springs-02476.herokuapp.com/deleteProduct/${_id}`,
@@ -64,7 +63,7 @@ const AdminProduct = (props) => {
                     <hr />
                 </>
             )}
-            {editing && <EditProduct></EditProduct>}
+            {editing && <EditProduct product={_id}></EditProduct>}
         </>
     );
 };
