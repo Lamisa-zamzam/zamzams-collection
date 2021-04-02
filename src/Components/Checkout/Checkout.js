@@ -6,10 +6,11 @@ import "./Checkout.css";
 
 const Checkout = () => {
     const history = useHistory();
-    const [user, setUser] = useContext(UserContext);
+    const [user] = useContext(UserContext);
     const { email } = user;
     const [selectedJersey, setSelectedJersey] = useState({});
     const { _id } = useParams();
+    const [error, setError] = useState("");
 
     // fetches the product selected
     useEffect(() => {
@@ -37,9 +38,7 @@ const Checkout = () => {
                     alert("Your order has been placed successfully!!!");
                     history.push("/");
                 } else {
-                    const newUser = { ...user };
-                    newUser.error = "Something went wrong. Please try again";
-                    setUser(newUser);
+                    setError("Something went wrong. Please try again");
                 }
             });
     };
@@ -54,7 +53,7 @@ const Checkout = () => {
                 />
             ) : (
                 <div>
-                    <p style={{ color: "red" }}>{user.error}</p>
+                    <p style={{ color: "red" }}>{error}</p>
                     <Container className="container">
                         <h1 className="tableHeading">Checkout</h1>
                         <h5 className="tableHeading">Confirm your order</h5>
