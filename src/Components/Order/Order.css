@@ -1,0 +1,10 @@
+.jerseyImage {
+    width: 120%;
+}
+
+.jerseyCol{
+    margin-left: 0px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 30px;
+}
