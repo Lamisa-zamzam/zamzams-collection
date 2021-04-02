@@ -3,9 +3,12 @@ import { Col, Row } from "react-bootstrap";
 import "./Order.css";
 
 const Order = (props) => {
-    const { _id, id, product, detail, owner, price, date, image } = props.order;
+    const { product, owner, price, date, image } = props.order;
+
+    // The date-time is returned jointly from the database, so we have to split them
     const onlyDate = date.split("T")[0];
     const onlyTime = date.split("T")[1].slice(0, 8);
+
     return (
         <>
             <Row>

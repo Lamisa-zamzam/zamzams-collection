@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: drawerWidth,
     },
-    // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
@@ -106,7 +105,7 @@ function MyResponsiveDrawer(props) {
                 >
                     {["Manage Product", "Add Product", "Edit Product"].map(
                         (text, index) => (
-                            <>
+                            <div key={text}>
                                 <ListItem
                                     button
                                     key={text}
@@ -132,7 +131,7 @@ function MyResponsiveDrawer(props) {
                                     <ListItemText primary={text} />
                                 </ListItem>
                                 <Divider />
-                            </>
+                            </div>
                         )
                     )}
                 </List>

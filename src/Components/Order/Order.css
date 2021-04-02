@@ -2,7 +2,7 @@
     width: 120%;
 }
 
-.jerseyCol{
+.jerseyCol {
     margin-left: 0px;
     display: grid;
     grid-template-columns: 40% 60%;

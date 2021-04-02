@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Admin from "./Components/Admin/Admin";
 import Home from "./Components/Home/Home";
@@ -22,6 +22,7 @@ function App() {
         isLoggedIn: false,
         error: "",
     });
+
     return (
         <UserContext.Provider value={[user, setUser]}>
             <Router>
@@ -43,13 +44,13 @@ function App() {
                         <Login />
                     </Route>
                     <PrivateRoute path="/checkout/:_id">
-                        <Checkout/>
+                        <Checkout />
                     </PrivateRoute>
                     <Route exact path="/">
                         <Home />
                     </Route>
                     <Route path="*">
-                        <NotFound/>
+                        <NotFound />
                     </Route>
                 </Switch>
             </Router>

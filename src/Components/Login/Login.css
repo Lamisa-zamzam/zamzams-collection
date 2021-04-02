@@ -56,11 +56,11 @@
     margin-bottom: -5px;
 }
 
-@media(max-width: 760px){
-    .logo{
+@media (max-width: 760px) {
+    .logo {
         width: 100%;
     }
-    .form-field{
+    .form-field {
         width: 100%;
     }
 }

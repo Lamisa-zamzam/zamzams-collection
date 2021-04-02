@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import "./AddProduct.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useHistory } from "react-router";
+import "./AddProduct.css";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const AddProduct = () => {
+    const [user, setUser] = useContext(UserContext);
     const history = useHistory();
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const [imageURL, setImageURL] = useState("");
+
+    // handles imgbb image upload
     const handleImageUpload = (event) => {
         const imageData = new FormData();
         imageData.set("key", "b238360b7dd6273493645ed46cb79ec6");
@@ -21,12 +26,19 @@ const AddProduct = () => {
                 setImageURL(res.data.data.display_url);
             })
             .catch((err) => {
-                console.log(err);
+                handleError(err);
             });
     };
 
+    // handle error
+    const handleError = (err) => {
+        const newUser = { ...user };
+        newUser.error = err;
+        setUser(newUser);
+    };
+
+    // handles form submit
     const onSubmit = (data) => {
-        console.log(data);
         const productData = { ...data, image: imageURL };
         fetch("https://powerful-springs-02476.herokuapp.com/addProduct", {
             method: "POST",
@@ -38,11 +50,11 @@ const AddProduct = () => {
                 if (result === true) {
                     alert("Your product has been added successfully!!!");
                     history.push("/");
+                } else {
+                    handleError("Something went wrong. Please Try again.");
                 }
             });
     };
-
-    console.log(watch("example"));
 
     return (
         <div>
@@ -124,7 +136,7 @@ const AddProduct = () => {
                                     placeholder="Your Product Detail"
                                 ></input>{" "}
                             </label>
-                            {errors.owner && (
+                            {errors.detail && (
                                 <p style={{ color: "red" }}>
                                     This field is required
                                 </p>
@@ -160,13 +172,15 @@ const AddProduct = () => {
                                 ) : (
                                     <div>
                                         <br />
-                                        <p style={{fontSize: "12px"}}>
+                                        <p style={{ fontSize: "12px" }}>
                                             You will be ready to add your
                                             product as soon as your image is
-                                            uploaded and all the fields are filled up.
+                                            uploaded and all the fields are
+                                            filled up.
                                         </p>
                                     </div>
                                 )}
+                                <p style={{ color: "red" }}>{user.error}</p>
                             </div>
                         </Col>
                     </Row>

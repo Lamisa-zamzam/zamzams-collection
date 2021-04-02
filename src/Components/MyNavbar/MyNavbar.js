@@ -5,11 +5,21 @@ import { UserContext } from "../../App";
 import "./MyNavbar.css";
 
 const MyNavbar = () => {
-    const [user, setUser] = useContext(UserContext);
+    const [user] = useContext(UserContext);
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/home">
-                React-Bootstrap
+                <div className="brandCollection">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD4qERDnuFM9cBrqRQdDv-fVwKcHHIQQ3lDQ&usqp=CAU"
+                        className="companyLogo"
+                        alt="logo"
+                    />
+                    <div>
+                        <h3 className="brandName">Zamzam's Collection</h3>
+                        <p>Exclusive Football Jerseys</p>
+                    </div>
+                </div>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

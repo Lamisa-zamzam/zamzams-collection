@@ -8,10 +8,10 @@ const Checkout = () => {
     const history = useHistory();
     const [user, setUser] = useContext(UserContext);
     const { email } = user;
-    console.log(email);
     const [selectedJersey, setSelectedJersey] = useState({});
     const { _id } = useParams();
 
+    // fetches the product selected
     useEffect(() => {
         fetch(`https://powerful-springs-02476.herokuapp.com/product/${_id}`)
             .then((res) => res.json())
@@ -22,6 +22,7 @@ const Checkout = () => {
 
     const { product, detail, owner, price, image, id } = selectedJersey;
 
+    // Handles order confirmation
     const confirmOrder = () => {
         const date = new Date();
         const order = { email, product, detail, owner, price, image, id, date };
@@ -33,19 +34,17 @@ const Checkout = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                if(data === true){
+                if (data === true) {
                     alert("Your order has been placed successfully!!!");
                     history.push("/");
-                }
-                else{
-                    const newUser = {...user};
+                } else {
+                    const newUser = { ...user };
                     newUser.error = "Something went wrong. Please try again";
                     setUser(newUser);
                 }
             });
     };
 
-    console.log(selectedJersey);
     return (
         <div>
             {selectedJersey === {} ? (
@@ -56,7 +55,7 @@ const Checkout = () => {
                 />
             ) : (
                 <div>
-                    <p style={{color: "red"}}>{user.error}</p>
+                    <p style={{ color: "red" }}>{user.error}</p>
                     <Container className="container">
                         <h1 className="tableHeading">Checkout</h1>
                         <h5 className="tableHeading">Confirm your order</h5>

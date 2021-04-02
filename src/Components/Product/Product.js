@@ -1,3 +1,5 @@
+import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Card, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -13,10 +15,13 @@ const Product = (props) => {
                     <Card.Title>{product}</Card.Title>
                     <p>Seller: {owner}</p>
                     <Card.Text>{detail}</Card.Text>
-                    <div>
+                    <div className="gridDiv">
                         <h4 className="productPrice">{price}</h4>
                         <Link to={`/checkout/${_id}`}>
-                            <Button variant="primary">Order Now</Button>
+                            <Button variant="primary">
+                                <FontAwesomeIcon icon={faCartArrowDown} /> Order
+                                Now
+                            </Button>
                         </Link>
                     </div>
                 </Card.Body>

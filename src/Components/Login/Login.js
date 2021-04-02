@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
@@ -30,9 +30,9 @@ const Login = () => {
 
     let history = useHistory();
     let location = useLocation();
-
     let { from } = location.state || { from: { pathname: "/" } };
 
+    // Google sign in
     const handleGoogleLogin = () => {
         firebase
             .auth()
@@ -40,30 +40,22 @@ const Login = () => {
             .then((result) => {
                 const googleUser = result.user;
                 const { displayName, email, photoURL } = googleUser;
-                console.log(googleUser);
-                const newUser = { ...user };
-                newUser.photoURL = photoURL;
-                newUser.name = displayName;
-                newUser.email = email;
-                setUser(newUser);
-                history.replace(from);
+                handleUser(displayName, email, photoURL, true);
             })
             .catch((error) => {
-                const errorMessage = error.message;
-                const newUser = { ...user };
-                newUser.error = errorMessage;
-                setUser(newUser);
+                handleErrorMessage(error);
             });
     };
 
-    console.log(user.email);
-
+    // handles user info
     const handleUser = (name, email, photoURL, whetherLoggedIn) => {
         const newUser = { ...user };
         if (name !== undefined) {
             newUser.name = name;
         }
-        newUser.email = email;
+        if (email !== undefined) {
+            newUser.email = email;
+        }
         if (photoURL !== undefined) {
             newUser.photoURL = photoURL;
         }
@@ -74,13 +66,13 @@ const Login = () => {
         history.replace(from);
     };
 
+    // handles error in case it occurs
     const handleErrorMessage = (error) => {
         const errorMessage = error.message;
         const newUser = { ...user };
         newUser.error = errorMessage;
         setUser(newUser);
     };
-
 
     // Register with email and password
     const handleSignUp = (name, userEmail, userPassword) => {
@@ -138,6 +130,7 @@ const Login = () => {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
+    // Checking passwords
     const handleBlur = (e) => {
         if (e.target.name === "password") {
             setPassword(e.target.value);
@@ -310,9 +303,7 @@ const Login = () => {
                 </button>
                 <br />
                 <br />
-                <button
-                    className="social-media-btn"
-                >
+                <button className="social-media-btn">
                     <FontAwesomeIcon
                         icon={faFacebookSquare}
                         className="social-media-icon"
@@ -334,7 +325,9 @@ const Login = () => {
                 </button>
             </div>
 
-            <p className="error">{user.error}</p>
+            <p className="error" style={{ marginLeft: "20%" }}>
+                {user.error}
+            </p>
         </Container>
     );
 };

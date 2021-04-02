@@ -13,8 +13,8 @@
     margin-top: 8%;
 }
 
-@media (max-width: 760px){
-    .columnEmpty{
+@media (max-width: 760px) {
+    .columnEmpty {
         display: none;
     }
 }

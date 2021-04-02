@@ -11,14 +11,40 @@ const Home = () => {
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);
+
+    const [searchStr, setSearchStr] = useState("");
+
+    const handleClick = (searchStr) => {
+        setProducts([]);
+        if (searchStr) {
+            fetch(`https://powerful-springs-02476.herokuapp.com/search/${searchStr}`)
+                .then((res) => res.json())
+                .then((result) => setProducts(result));
+        }
+    }
+
+    const handleSearch = (e) => {
+        const newSearchStr = e.target.value;
+        setSearchStr(newSearchStr);
+        setProducts([]);
+        if (newSearchStr) {
+            fetch(`https://powerful-springs-02476.herokuapp.com/search/${newSearchStr}`)
+                .then((res) => res.json())
+                .then((result) => console.log(result));
+        }
+        // handleClick(searchStr);
+    };
+
+
     return (
         <div>
             <Form.Control
                 type="text"
-                placeholder="Search Sports Groceries..."
+                placeholder="Search Jerseys..."
                 className="searchForm"
+                onChange={(e) => handleSearch(e)}
             />
-            <Button className="searchButton">Search</Button>
+            <Button className="searchButton" onClick={() => handleClick(searchStr)}>Search</Button>
             <Container className="container">
                 <Row>
                     {!products.length && (

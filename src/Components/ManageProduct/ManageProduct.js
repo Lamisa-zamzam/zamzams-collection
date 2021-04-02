@@ -5,11 +5,14 @@ import "./ManageProduct.css";
 
 const ManageProduct = () => {
     const [products, setProducts] = useState([]);
+
+    // loads all the products data
     useEffect(() => {
         fetch("https://powerful-springs-02476.herokuapp.com/products")
             .then((res) => res.json())
             .then((data) => setProducts(data));
     }, []);
+
     return (
         <Container fluid className="rowContainer">
             <Row className="titleRow">

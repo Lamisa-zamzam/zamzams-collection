@@ -13,6 +13,11 @@
     margin-right: 25%;
 }
 
+.gridDiv{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 @media (max-width: 750px){
     .productPrice{
         margin-right: 20%;
