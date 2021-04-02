@@ -8,19 +8,21 @@
 }
 
 .productPrice {
-    display: inline;
     color: deeppink;
-    margin-right: 25%;
 }
 
-.gridDiv{
+.gridDiv {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 
-@media (max-width: 750px){
-    .productPrice{
+@media (max-width: 750px) {
+    .productPrice {
         margin-right: 20%;
         margin-bottom: 5%;
+    }
+
+    .gridDiv {
+        display: block;
     }
 }

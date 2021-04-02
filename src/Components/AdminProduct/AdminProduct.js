@@ -2,12 +2,21 @@ import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import EditProduct from "../EditProduct/EditProduct";
 import "./AdminProduct.css";
 
 const AdminProduct = (props) => {
     const [isDeleted, setIsDeleted] = useState(false);
+    const [editing, setEditing] = useState(false);
     const { _id, product, price, owner } = props.product;
-    const handleEdit = () => alert("Feature will be available soon!");
+
+    // handles product edit
+    const handleEdit = (_id) => {
+        alert("Feature will be available soon!");
+        setEditing(true);
+    };
+
+    // handle product delete
     const handleDelete = (_id) => {
         fetch(
             `https://powerful-springs-02476.herokuapp.com/deleteProduct/${_id}`,
@@ -26,7 +35,7 @@ const AdminProduct = (props) => {
 
     return (
         <>
-            {!isDeleted && (
+            {!isDeleted && !editing && (
                 <>
                     <Row>
                         <Col>
@@ -42,7 +51,7 @@ const AdminProduct = (props) => {
                             <FontAwesomeIcon
                                 icon={faEdit}
                                 className="icon editIcon"
-                                onClick={handleEdit}
+                                onClick={() => handleEdit(_id)}
                             />
                             <FontAwesomeIcon
                                 icon={faTrashAlt}
@@ -55,6 +64,7 @@ const AdminProduct = (props) => {
                     <hr />
                 </>
             )}
+            {editing && <EditProduct></EditProduct>}
         </>
     );
 };

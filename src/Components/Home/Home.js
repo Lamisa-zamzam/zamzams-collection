@@ -6,6 +6,7 @@ import "./Home.css";
 const Home = () => {
     const [products, setProducts] = useState([]);
 
+    // loading all the products
     useEffect(() => {
         fetch("https://powerful-springs-02476.herokuapp.com/products")
             .then((res) => res.json())
@@ -14,27 +15,31 @@ const Home = () => {
 
     const [searchStr, setSearchStr] = useState("");
 
+    // handling search button click
     const handleClick = (searchStr) => {
         setProducts([]);
         if (searchStr) {
-            fetch(`https://powerful-springs-02476.herokuapp.com/search/${searchStr}`)
+            fetch(
+                `https://powerful-springs-02476.herokuapp.com/search/${searchStr}`
+            )
                 .then((res) => res.json())
                 .then((result) => setProducts(result));
         }
-    }
+    };
 
+    // handling search field change
     const handleSearch = (e) => {
         const newSearchStr = e.target.value;
         setSearchStr(newSearchStr);
-        setProducts([]);
-        if (newSearchStr) {
-            fetch(`https://powerful-springs-02476.herokuapp.com/search/${newSearchStr}`)
-                .then((res) => res.json())
-                .then((result) => console.log(result));
-        }
-        // handleClick(searchStr);
+        handleClick(searchStr);
     };
 
+    // handling search on enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleClick(searchStr);
+        }
+    };
 
     return (
         <div>
@@ -43,8 +48,14 @@ const Home = () => {
                 placeholder="Search Jerseys..."
                 className="searchForm"
                 onChange={(e) => handleSearch(e)}
+                onKeyDown={(e) => handleKeyDown(e)}
             />
-            <Button className="searchButton" onClick={() => handleClick(searchStr)}>Search</Button>
+            <Button
+                className="searchButton"
+                onClick={() => handleClick(searchStr)}
+            >
+                Search
+            </Button>
             <Container className="container">
                 <Row>
                     {!products.length && (

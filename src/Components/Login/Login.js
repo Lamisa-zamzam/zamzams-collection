@@ -148,7 +148,7 @@ const Login = () => {
         <Container>
             <form onSubmit={handleSubmit(onSubmit)} className="form-card">
                 <img
-                    src="https://image.shutterstock.com/image-vector/initial-letter-gt-modern-linked-260nw-444629587.jpg"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD4qERDnuFM9cBrqRQdDv-fVwKcHHIQQ3lDQ&usqp=CAU"
                     alt="Globetrotter"
                     className="logo"
                 />
@@ -324,10 +324,6 @@ const Login = () => {
                     Twitter
                 </button>
             </div>
-
-            <p className="error" style={{ marginLeft: "20%" }}>
-                {user.error}
-            </p>
         </Container>
     );
 };

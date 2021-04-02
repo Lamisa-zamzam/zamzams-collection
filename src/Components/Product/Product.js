@@ -7,6 +7,7 @@ import "./Product.css";
 
 const Product = (props) => {
     const { _id, product, image, owner, detail, price } = props.product;
+
     return (
         <Col md={4}>
             <Card className="card">
