@@ -24,7 +24,8 @@ My project includes:
 ### Roadmap
 => implementing admin panel\
 => making JWT tokens come into use\
-=> improving responsiveness
+=> improving responsiveness\
+=> making update operation possible
 
 ### Contributing 
 Pull requests are welcome. For major changes, open an issue first and let's discuss what you want to change.
