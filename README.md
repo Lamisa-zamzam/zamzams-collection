@@ -6,15 +6,25 @@ This responsive project provides a number of jersey which you can buy. It also h
 
 # Open [My Live Site](https://full-stack-sport-grocery.web.app) to see how it works.
 
+### My server side code: [https://github.com/Lamisa-zamzam/zamzams-collection-server](https://github.com/Lamisa-zamzam/zamzams-collection-server)
+
 ### You can also visit [My server](https://powerful-springs-02476.herokuapp.com/) form where I am loading data.
 
-My project includes:\
+My project includes:
 
-1.  [React](https://reactjs.org/docs/getting-started.html),\
-2.  [React Router](https://reactrouter.com/),\
-3.  [React-Bootstrap](https://react-bootstrap.github.io/),\
-4.  [Font Awesome](https://fontawesome.com/),\
-5.  [Firebase](https://firebase.google.com/docs?authuser=0),\
+1.  [React](https://reactjs.org/docs/getting-started.html),
+2.  [React Router](https://reactrouter.com/),
+3.  [React-Bootstrap](https://react-bootstrap.github.io/),
+4.  [Font Awesome](https://fontawesome.com/),
+5.  [Firebase](https://firebase.google.com/docs?authuser=0),
 6.  [React Hook Form](https://react-hook-form.com/),
-7.  [My own APIs to load data](https://powerful-springs-02476.herokuapp.com)and
+7.  [My own APIs to load data](https://powerful-springs-02476.herokuapp.com) and
 8.  [Material UI](https://material-ui.com/).
+
+### Roadmap
+=> implementing admin panel
+=> making JWT tokens come into use
+=> improving responsiveness
+
+### Contributing 
+Pull requests are welcome. For major changes, open an issue first and let's discuss what you want to change.
