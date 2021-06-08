@@ -22,8 +22,8 @@ My project includes:
 8.  [Material UI](https://material-ui.com/).
 
 ### Roadmap
-=> implementing admin panel/
-=> making JWT tokens come into use/
+=> implementing admin panel\
+=> making JWT tokens come into use\
 => improving responsiveness
 
 ### Contributing 
